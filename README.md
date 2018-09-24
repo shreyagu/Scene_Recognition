@@ -19,7 +19,7 @@ The following python packages are required for running the software.
 [Matplotlib](https://matplotlib.org/contents.html)
 
 ### Preparing data
-The model was trained on images extracted from the frames extracted from YouTube 8M dataset videos. The frames were extracted based on the code [here](here](https://github.com/gsssrao/youtube-8m-videos-frames). 
+The model was trained on images extracted from the frames extracted from YouTube 8M dataset videos. The frames were extracted based on the code [here](https://github.com/gsssrao/youtube-8m-videos-frames). 
 
 A trained model is already saved in 'data' folder. However re-training is supported. Follow below steps to prepare data for training:
 1. Download all indoor and outdoor videos and store them separately.
