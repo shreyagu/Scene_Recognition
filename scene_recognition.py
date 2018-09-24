@@ -24,7 +24,7 @@ model = load_model('data/InOutClassifierModel.h5')
 tic=time.time()
 ypred = (model.predict(xtest))
 toc=time.time()
-print(toc-tic)
+#print(toc-tic)
 # Display the result
 if (((ypred[0])[1])==1.0):
     print ("Predicted Category is: Outdoor")
