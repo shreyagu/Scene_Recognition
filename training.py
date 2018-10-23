@@ -63,6 +63,12 @@ y = np.array(y)
 # dividing data into test and train with default np.random shuffle
 xtrain, xtest, ytrain, ytest = train_test_split(x,y,test_size=0.15, random_state = None)
 
+for i in range(0,xtrain.shape[0]):
+    xtrain[i] = xtrain[i] - xtrain[i].mean()
+
+for i in range(0,xtest.shape[0]):
+    xtest[i] = xtest[i] - xtest[i].mean()
+
 # shuffling data randomly 
 idx = np.random.permutation(len(xtrain))
 xtrain,ytrain = xtrain[idx], ytrain[idx]
@@ -91,17 +97,22 @@ ytest = keras.utils.to_categorical(ytest, num_classes)
 
 # Creating the CNN model
 model = Sequential()
-model.add(Conv2D(64, kernel_size=(3, 3), strides=(1,1), activation='relu', input_shape=input_shape))
-model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
-model.add(Conv2D(128, kernel_size=(3, 3), activation='relu'))
-model.add(Dropout(0.2))
-model.add(Conv2D(128, kernel_size=(3, 3), activation="relu", padding="same"))
-model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(Conv2D(32, kernel_size=(3, 3), strides=(1,1), activation='relu', input_shape=input_shape))
 model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
 model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+model.add(Dropout(0.5))
+model.add(Conv2D(128, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+model.add(Dropout(0.5))
+model.add(Conv2D(128, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+model.add(Dropout(0.5))
+model.add(Conv2D(128, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(Dropout(0.5))
+model.add(Conv2D(32, kernel_size=(3, 3), activation="relu", padding="same"))
 model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
 
-model.add(Dropout(0.25))
+model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))

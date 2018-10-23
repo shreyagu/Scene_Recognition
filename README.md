@@ -26,9 +26,11 @@ A trained model is already saved in 'data' folder. However re-training is suppor
 2. Run the extract_frames.py script on each folder with appropriate category as arguement. After this you will have 'Frames' folder for both indoor and outdoor
 3. Place the indoor frames to "data/train/Indoor_data" and outfoor frames to "data/train/Outdoor_data"
 
-
 ### Training
 To train a new model, prepare the data as mentioned above and run the training.py.
+
+(Updated) As a pre-processing step, we resize each image to 64x64 and zero center them. Zero centering images will help speeding up the learning process as even small changes in the filter response results in large gradients.
+
 
 The current model was designed in two steps. Initially below setup was used to train the images.
 ![alt text](https://raw.githubusercontent.com/shreyagu/Scene_Recognition/master/data/initial_nw.png)
@@ -41,6 +43,12 @@ From the plots it is clear that there is a high over-fitting. So a new design wa
 Total training time: 13 hours
 Below accuracy and loss plots were obtained for training vs validation.
 ![alt text](https://raw.githubusercontent.com/shreyagu/Scene_Recognition/master/data/final_nw_plot.png)
+
+(Updated) To further improve the over-fitting scenario, a few more layers with subsequent drop-outs are added, we could observe that the loss has decreased substantially without compromising on accuracy. The model is summarized below.
+![alt text](https://raw.githubusercontent.com/shreyagu/Scene_Recognition/master/data/updated_nw.png)
+Below accuracy and loss plots were obtained for training vs validation.
+![alt text](https://raw.githubusercontent.com/shreyagu/Scene_Recognition/master/data/updated_nw_plot.png)
+
 
 
 ## Formats
